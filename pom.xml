@@ -155,7 +155,7 @@
     <!-- the producer is used in tests -->
     <aws.kinesis.producer.version>0.12.8</aws.kinesis.producer.version>
     <!--  org.apache.httpcomponents/httpclient-->
-    <commons.httpclient.version>4.5.13</commons.httpclient.version>
+    <commons.httpclient.version>4.5.11</commons.httpclient.version>
     <commons.httpcore.version>4.4.14</commons.httpcore.version>
     <commons.math3.version>3.4.1</commons.math3.version>
     <!-- managed up from 3.2.1 for SPARK-11652 -->
@@ -283,6 +283,9 @@
     <CodeCacheSize>128m</CodeCacheSize>
     <!-- Needed for consistent times -->
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss z</maven.build.timestamp.format>
+
+    <!-- Needed for aws java sdk bundle version -->
+    <aws.java.sdk.bundle.version>1.11.1014</aws.java.sdk.bundle.version>
   </properties>
   <repositories>
     <repository>
@@ -2507,6 +2510,12 @@
         <groupId>dev.ludovic.netlib</groupId>
         <artifactId>arpack</artifactId>
         <version>${netlib.ludovic.dev.version}</version>
+      </dependency>
+      <!-- AWS java sdk version을 최신화 하기 위해 최 상단에 dependency 정의-->
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bundle</artifactId>
+        <version>${aws.java.sdk.bundle.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
