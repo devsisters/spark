@@ -150,6 +150,8 @@
     <aws.java.sdk.version>1.11.655</aws.java.sdk.version>
     <!-- the producer is used in tests -->
     <aws.kinesis.producer.version>0.12.8</aws.kinesis.producer.version>
+    <!-- Needed for aws java sdk bundle version -->
+    <aws.java.sdk.bundle.version>1.12.296</aws.java.sdk.bundle.version>
     <!--  org.apache.httpcomponents/httpclient-->
     <commons.httpclient.version>4.5.13</commons.httpclient.version>
     <commons.httpcore.version>4.4.14</commons.httpcore.version>
@@ -2712,6 +2714,12 @@
         <groupId>dev.ludovic.netlib</groupId>
         <artifactId>arpack</artifactId>
         <version>${netlib.ludovic.dev.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-bundle -->
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bundle</artifactId>
+        <version>${aws.java.sdk.bundle.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
