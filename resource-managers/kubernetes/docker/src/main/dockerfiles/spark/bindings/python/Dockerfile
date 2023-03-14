@@ -24,9 +24,22 @@ WORKDIR /
 USER 0
 
 RUN mkdir ${SPARK_HOME}/python
-RUN apt-get update && \
-    apt install -y python3 python3-pip && \
-    pip3 install --upgrade pip setuptools && \
+
+# Install Python 3.10.5
+RUN apt update && \
+	apt upgrade -y && \
+    apt install -y wget build-essential libncursesw5-dev libssl-dev \
+        libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev && \
+    wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tgz && \
+    tar xzf Python-3.10.5.tgz && \
+    cd Python-3.10.5 && \
+    ./configure --enable-optimizations && \
+    make altinstall && \
+    ln -sf /usr/local/bin/python3.10 /usr/bin/python && \
+    ln -sf /usr/local/bin/python3.10 /usr/bin/python3 && \
+    # We remove ensurepip since it adds no functionality since pip is
+    # installed on the image and it just takes up 1.6MB on the image
+    python -m pip install --upgrade pip setuptools && \
     # Removed the .cache to save space
     rm -r /root/.cache && rm -rf /var/cache/apt/*
 

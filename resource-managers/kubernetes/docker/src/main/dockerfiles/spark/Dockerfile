@@ -20,6 +20,9 @@ FROM openjdk:${java_image_tag}
 
 ARG spark_uid=185
 
+# (junbongwe) Set timezone to Asia/Seoul
+ENV TZ Asia/Seoul
+
 # Before building the docker image, first build and make a Spark distribution following
 # the instructions in https://spark.apache.org/docs/latest/building-spark.html.
 # If this docker file is being used in the context of building your images from a Spark
