@@ -307,6 +307,9 @@
       --add-opens=java.base/sun.security.action=ALL-UNNAMED
       --add-opens=java.base/sun.util.calendar=ALL-UNNAMED
     </extraJavaTestArgs>
+
+    <!-- Needed for aws java sdk bundle version -->
+    <aws.java.sdk.bundle.version>1.12.31</aws.java.sdk.bundle.version>
   </properties>
   <repositories>
     <repository>
@@ -2717,6 +2720,13 @@
         <groupId>dev.ludovic.netlib</groupId>
         <artifactId>arpack</artifactId>
         <version>${netlib.ludovic.dev.version}</version>
+      </dependency>
+
+      <!-- AWS java sdk version을 최신화 하기 위해 최 상단에 dependency 정의-->
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bundle</artifactId>
+        <version>${aws.java.sdk.bundle.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
