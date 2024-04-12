@@ -296,6 +296,9 @@
     <!-- Needed for consistent times -->
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss z</maven.build.timestamp.format>
 
+    <!-- Needed for aws java sdk bundle version -->
+    <aws.java.sdk.bundle.version>1.11.1014</aws.java.sdk.bundle.version>
+    
     <!-- SPARK-36796 for JDK-17 test-->
     <extraJavaTestArgs>
       -XX:+IgnoreUnrecognizedVMOptions
@@ -424,6 +427,12 @@
       <groupId>com.github.sbt</groupId>
       <artifactId>junit-interface</artifactId>
       <scope>test</scope>
+    </dependency>
+    <!-- AWS java sdk version을 최신화 하기 위해 최 상단에 dependency 정의-->
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-bundle</artifactId>
+      <version>${aws.java.sdk.bundle.version}</version>
     </dependency>
   </dependencies>
   <dependencyManagement>
