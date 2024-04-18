@@ -95,8 +95,8 @@ class SparkSubmitUtilsSuite extends SparkFunSuite {
 
   test("add dependencies works correctly") {
     val md = SparkSubmitUtils.getModuleDescriptor
-    val artifacts = SparkSubmitUtils.extractMavenCoordinates("com.databricks:spark-csv_2.12:0.1," +
-      "com.databricks:spark-avro_2.12:0.1")
+    val artifacts = SparkSubmitUtils.extractMavenCoordinates("com.databricks:spark-csv_2.13:0.1," +
+      "com.databricks:spark-avro_2.13:0.1")
 
     SparkSubmitUtils.addDependenciesToIvy(md, artifacts, "default")
     assert(md.getDependencies.length === 2)
@@ -200,7 +200,7 @@ class SparkSubmitUtilsSuite extends SparkFunSuite {
       transitive = true,
       isTest = true)
     assert(path.isEmpty, "should return empty path")
-    val main = MavenCoordinate("org.apache.spark", "spark-streaming-kafka-assembly_2.12", "1.2.0")
+    val main = MavenCoordinate("org.apache.spark", "spark-streaming-kafka-assembly_2.13", "1.2.0")
     IvyTestUtils.withRepository(main, None, None) { repo =>
       val files = SparkSubmitUtils.resolveMavenCoordinates(
         coordinates + "," + main.toString,

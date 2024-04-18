@@ -40,7 +40,7 @@ class ObjectSerializerPruningSuite extends PlanTest {
       RemoveNoopOperators) :: Nil
   }
 
-  implicit private def productEncoder[T <: Product : TypeTag] = ExpressionEncoder[T]()
+  implicit private def productEncoder[T <: Product : TypeTag]: ExpressionEncoder[T] = ExpressionEncoder[T]()
 
   test("collect struct types") {
     val dataTypes = Seq(

@@ -327,7 +327,7 @@ class MasterSuite extends SparkFunSuite
   }
 
   test("SPARK-46888: master should reject worker kill request if decommision is disabled") {
-    implicit val formats = org.json4s.DefaultFormats
+    implicit val formats: Formats = org.json4s.DefaultFormats
     val conf = new SparkConf()
       .set(DECOMMISSION_ENABLED, false)
       .set(MASTER_UI_DECOMMISSION_ALLOW_MODE, "ALLOW")
@@ -347,7 +347,7 @@ class MasterSuite extends SparkFunSuite
   }
 
   test("master/worker web ui available") {
-    implicit val formats = org.json4s.DefaultFormats
+    implicit val formats: Formats = org.json4s.DefaultFormats
     val conf = new SparkConf()
     val localCluster = LocalSparkCluster(2, 2, 512, conf)
     localCluster.start()
@@ -383,7 +383,7 @@ class MasterSuite extends SparkFunSuite
   }
 
   test("master/worker web ui available with reverseProxy") {
-    implicit val formats = org.json4s.DefaultFormats
+    implicit val formats: Formats = org.json4s.DefaultFormats
     val conf = new SparkConf()
     conf.set(UI_REVERSE_PROXY, true)
     val localCluster = LocalSparkCluster(2, 2, 512, conf)
@@ -419,7 +419,7 @@ class MasterSuite extends SparkFunSuite
   }
 
   test("master/worker web ui available behind front-end reverseProxy") {
-    implicit val formats = org.json4s.DefaultFormats
+    implicit val formats: Formats = org.json4s.DefaultFormats
     val reverseProxyUrl = "http://proxyhost:8080/path/to/spark"
     val conf = new SparkConf()
     conf.set(UI_REVERSE_PROXY, true)

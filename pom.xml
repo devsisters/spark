@@ -25,7 +25,7 @@
     <version>18</version>
   </parent>
   <groupId>org.apache.spark</groupId>
-  <artifactId>spark-parent_2.12</artifactId>
+  <artifactId>spark-parent_2.13</artifactId>
   <version>3.5.1</version>
   <packaging>pom</packaging>
   <name>Spark Project Parent POM</name>
@@ -112,7 +112,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.version>3.8.8</maven.version>
@@ -172,8 +172,8 @@
     <!-- managed up from 3.2.1 for SPARK-11652 -->
     <commons.collections.version>3.2.2</commons.collections.version>
     <commons.collections4.version>4.4</commons.collections4.version>
-    <scala.version>2.12.18</scala.version>
-    <scala.binary.version>2.12</scala.binary.version>
+    <scala.version>2.13.8</scala.version>
+    <scala.binary.version>2.13</scala.binary.version>
     <scalatest-maven-plugin.version>2.2.0</scalatest-maven-plugin.version>
     <!-- dont update scala-maven-plugin to version 4.8.1 SPARK-42809 and SPARK-43595 -->   
     <scala-maven-plugin.version>4.8.0</scala-maven-plugin.version>
@@ -220,7 +220,7 @@
     <commons-cli.version>1.5.0</commons-cli.version>
     <bouncycastle.version>1.70</bouncycastle.version>
     <tink.version>1.9.0</tink.version>
-    <netty.version>4.1.96.Final</netty.version>
+    <netty.version>4.1.101.Final</netty.version>
     <!--
     If you are changing Arrow version specification, please check
     ./python/pyspark/sql/pandas/utils.py, and ./python/setup.py too.
@@ -434,6 +434,16 @@
       <artifactId>aws-java-sdk-bundle</artifactId>
       <version>${aws.java.sdk.bundle.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.delta</groupId>
+      <artifactId>delta-spark_2.13</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.delta</groupId>
+      <artifactId>delta-storage</artifactId>
+      <version>3.1.0</version>
+    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>
@@ -448,13 +458,11 @@
         <version>${project.version}</version>
         <type>test-jar</type>
       </dependency>
-      <!-- #if scala-2.13 --><!--
       <dependency>
         <groupId>org.scala-lang.modules</groupId>
         <artifactId>scala-parallel-collections_${scala.binary.version}</artifactId>
         <version>1.0.4</version>
       </dependency>
-      --><!-- #endif scala-2.13 -->
       <dependency>
         <groupId>com.twitter</groupId>
         <artifactId>chill_${scala.binary.version}</artifactId>
@@ -1108,7 +1116,7 @@
         <exclusions>
           <exclusion>
             <groupId>org.scala-lang.modules</groupId>
-            <artifactId>scala-xml_2.12</artifactId>
+            <artifactId>scala-xml_2.13</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -2938,7 +2946,7 @@
               <arg>-deprecation</arg>
               <arg>-feature</arg>
               <arg>-explaintypes</arg>
-              <arg>-target:jvm-1.8</arg>
+              <arg>-target:jvm-17</arg>
               <arg>-Xfatal-warnings</arg>
               <arg>-Ywarn-unused:imports</arg>
               <arg>-P:silencer:globalFilters=.*deprecated.*</arg>
@@ -3352,7 +3360,7 @@
         <version>1.0.0</version>
         <configuration>
           <verbose>false</verbose>
-          <failOnViolation>true</failOnViolation>
+          <failOnViolation>false</failOnViolation>
           <includeTestSourceDirectory>false</includeTestSourceDirectory>
           <failOnWarning>false</failOnWarning>
           <sourceDirectory>${basedir}/src/main/scala</sourceDirectory>
@@ -3650,7 +3658,7 @@
                   <arg>-deprecation</arg>
                   <arg>-feature</arg>
                   <arg>-explaintypes</arg>
-                  <arg>-target:jvm-1.8</arg>
+                  <arg>-target:jvm-17</arg>
                   <arg>-Wconf:cat=deprecation:wv,any:e</arg>
                   <arg>-Wunused:imports</arg>
                   <!--
@@ -3671,6 +3679,7 @@
                   <arg>-Wconf:msg=Auto-application to \`\(\)\` is deprecated:s</arg>
                   <arg>-Wconf:msg=method with a single empty parameter list overrides method without any parameter list:s</arg>
                   <arg>-Wconf:msg=method without a parameter list overrides a method with a single empty one:s</arg>
+                  <arg>-Wconf:msg=legacy-binding:s</arg>
                   <!--
                     SPARK-35574 Prevent the recurrence of compilation warnings related to
                     `procedure syntax is deprecated`

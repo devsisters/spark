@@ -18,7 +18,7 @@
 package org.apache.spark.mllib.clustering
 
 import org.json4s._
-import org.json4s.DefaultFormats
+import org.json4s.{DefaultFormats, Formats}
 import org.json4s.JsonDSL._
 import org.json4s.jackson.JsonMethods._
 
@@ -187,7 +187,7 @@ object BisectingKMeansModel extends Loader[BisectingKMeansModel] {
     }
 
     def load(sc: SparkContext, path: String): BisectingKMeansModel = {
-      implicit val formats: DefaultFormats = DefaultFormats
+      implicit val formats: Formats = DefaultFormats
       val (className, formatVersion, metadata) = Loader.loadMetadata(sc, path)
       assert(className == thisClassName)
       assert(formatVersion == thisFormatVersion)
@@ -223,7 +223,7 @@ object BisectingKMeansModel extends Loader[BisectingKMeansModel] {
     }
 
     def load(sc: SparkContext, path: String): BisectingKMeansModel = {
-      implicit val formats: DefaultFormats = DefaultFormats
+      implicit val formats: Formats = DefaultFormats
       val (className, formatVersion, metadata) = Loader.loadMetadata(sc, path)
       assert(className == thisClassName)
       assert(formatVersion == thisFormatVersion)
@@ -261,7 +261,7 @@ object BisectingKMeansModel extends Loader[BisectingKMeansModel] {
     }
 
     def load(sc: SparkContext, path: String): BisectingKMeansModel = {
-      implicit val formats: DefaultFormats = DefaultFormats
+      implicit val formats: Formats = DefaultFormats
       val (className, formatVersion, metadata) = Loader.loadMetadata(sc, path)
       assert(className == thisClassName)
       assert(formatVersion == thisFormatVersion)

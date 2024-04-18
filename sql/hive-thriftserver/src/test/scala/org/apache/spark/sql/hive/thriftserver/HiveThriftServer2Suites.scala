@@ -26,7 +26,7 @@ import java.util.{Locale, UUID}
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
-import scala.concurrent.{ExecutionContext, Future, Promise}
+import scala.concurrent.{ExecutionContext, ExecutionContextExecutorService, Future, Promise}
 import scala.concurrent.duration._
 import scala.io.Source
 import scala.util.Try
@@ -441,7 +441,7 @@ class HiveThriftBinaryServerSuite extends HiveThriftServer2Test {
         s"LOAD DATA LOCAL INPATH '${TestData.smallKv}' OVERWRITE INTO TABLE test_map")
 
       queries.foreach(statement.execute)
-      implicit val ec = ExecutionContext.fromExecutorService(
+      implicit val ec: ExecutionContextExecutorService = ExecutionContext.fromExecutorService(
         ThreadUtils.newDaemonSingleThreadExecutor("test-jdbc-cancel"))
       try {
         // Start a very-long-running query that will take hours to finish, then cancel it in order

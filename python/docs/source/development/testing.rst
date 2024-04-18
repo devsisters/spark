@@ -86,4 +86,4 @@ For the Apache Spark release:
 
 .. code-block:: bash
 
-    bin/pyspark --remote "local[*]" --packages org.apache.spark:spark-connect_2.12:3.4.0
+    bin/pyspark --remote "local[*]" --packages org.apache.spark:spark-connect_2.13:3.5.1
