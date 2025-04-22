@@ -31,6 +31,7 @@ ENV TZ Asia/Seoul
 
 RUN set -ex && \
     apt-get update && \
+    apt-get upgrade -y && \
     ln -s /lib /lib64 && \
     apt install -y bash tini libc6 libpam-modules krb5-user libnss3 procps net-tools && \
     mkdir -p /opt/spark && \
